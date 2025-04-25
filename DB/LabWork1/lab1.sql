@@ -50,7 +50,7 @@ CREATE TABLE shifts (
     id SERIAL PRIMARY KEY,
     person_id INTEGER REFERENCES persons(id),
     project_id INTEGER REFERENCES projects(id),
-    hours NUMERIC(2,2) NOT NULL,
+    hours NUMERIC(5,2) NOT NULL,
     date DATE NOT NULL,
     is_overtime BOOLEAN DEFAULT FALSE
 );
