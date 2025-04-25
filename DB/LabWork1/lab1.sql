@@ -76,7 +76,7 @@ INSERT INTO projects (name, description, start_date, company_id) VALUES
 ('Система для Парка юрского периода', 'Разработка системы управления парком', '2023-01-01', 1);
 
 INSERT INTO contracts (project_id, person_id, terms, price) VALUES 
-(1, 1, 'Разработка и поддержка системы', 100000.00);
+(1, 1, 'Разработка и поддержка системы', 100000);
 
 INSERT INTO requirements (project_id, description, is_paid, deadline) VALUES 
 (1, 'Модификация системы по новым требованиям', FALSE, '2023-11-30');
@@ -86,7 +86,7 @@ INSERT INTO incidents (project_id, type, description, date) VALUES
 (1, 'Угроза иска', 'Угроза судебным иском за невыполнение требований', '2023-11-10');
 
 INSERT INTO shifts (person_id, project_id, hours, date, is_overtime) VALUES 
-(1, 1, 8.0, '2023-11-20', FALSE),
+(1, 1, 8, '2023-11-20', FALSE),
 (1, 1, 4.5, '2023-11-21', TRUE);
 
 INSERT INTO project_team (project_id, person_id, role_in_project) VALUES 
