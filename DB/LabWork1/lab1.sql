@@ -17,7 +17,7 @@ CREATE TABLE fates (
 id SERIAL PRIMARY KEY,
 person_id INTEGER NOT NULL REFERENCES persons(id) ON DELETE CASCADE,
 whatHappens TEXT NOT NULL,
-UNIQUE (user_id)
+UNIQUE (person_id)
 );
 
 CREATE TABLE projects (
@@ -79,7 +79,7 @@ INSERT INTO persons (name, role, company_id) VALUES
 ('Недри', 'Разработчик', 2),
 ('Хэммонд', 'Представитель заказчика', 1);
 
-INSERT INTO fates (user_id, whatHappens) VALUES 
+INSERT INTO fates (person_id, whatHappens) VALUES 
 (1, 'Ну уволится походу'),
 (2, 'Денюжки получит');
 
