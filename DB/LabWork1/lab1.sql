@@ -13,6 +13,13 @@ CREATE TABLE persons (
     company_id INTEGER REFERENCES companies(id)
 );
 
+CREATE TABLE fates (
+id SERIAL PRIMARY KEY,
+person_id INTEGER NOT NULL REFERENCES persons(id) ON DELETE CASCADE,
+whatHappens TEXT NOT NULL,
+UNIQUE (user_id)
+);
+
 CREATE TABLE projects (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
@@ -72,22 +79,26 @@ INSERT INTO persons (name, role, company_id) VALUES
 ('Недри', 'Разработчик', 2),
 ('Хэммонд', 'Представитель заказчика', 1);
 
+INSERT INTO fates (user_id, whatHappens) VALUES 
+(1, 'Ну уволится походу'),
+(2, 'Денюжки получит');
+
 INSERT INTO projects (name, description, start_date, company_id) VALUES 
-('Система для Парка юрского периода', 'Разработка системы управления парком', '2023-01-01', 1);
+('Система для Парка юрского периода', 'Разработка системы управления парком', '2025-01-01', 1);
 
 INSERT INTO contracts (project_id, person_id, terms, price) VALUES 
 (1, 1, 'Разработка и поддержка системы', 100000);
 
 INSERT INTO requirements (project_id, description, is_paid, deadline) VALUES 
-(1, 'Модификация системы по новым требованиям', FALSE, '2023-11-30');
+(1, 'Модификация системы по новым требованиям', FALSE, '2025-11-30');
 
 INSERT INTO incidents (project_id, type, description, date) VALUES 
-(1, 'Письмо клиентам', 'Объявление Недри ненадежным', '2023-11-15'),
-(1, 'Угроза иска', 'Угроза судебным иском за невыполнение требований', '2023-11-10');
+(1, 'Письмо клиентам', 'Объявление Недри ненадежным', '2025-11-15'),
+(1, 'Угроза иска', 'Угроза судебным иском за невыполнение требований', '2025-11-10');
 
 INSERT INTO shifts (person_id, project_id, hours, date, is_overtime) VALUES 
-(1, 1, 8, '2023-11-20', FALSE),
-(1, 1, 4.5, '2023-11-21', TRUE);
+(1, 1, 8, '2025-11-20', FALSE),
+(1, 1, 4.5, '2025-11-21', TRUE);
 
 INSERT INTO project_team (project_id, person_id, role_in_project) VALUES 
 (1, 1, 'Архитектор системы'),
