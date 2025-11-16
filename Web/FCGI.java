@@ -31,7 +31,7 @@ public class FCGI {
             } catch (Exception e) {
                 log(e.getMessage());
             } finally {
-                cleanup();
+                clean();
             }
         }
     }
@@ -42,14 +42,14 @@ public class FCGI {
         String contentLengthStr = System.getProperty("CONTENT_LENGTH");
         String queryString = System.getProperty("QUERY_STRING");
 
-        log("=== FCGI Request Details ===");
+        log("Детали запроса:");
         log("REQUEST_METHOD: " + requestMethod);
         log("CONTENT_TYPE: " + contentType);
         log("CONTENT_LENGTH: " + contentLengthStr);
         log("QUERY_STRING: " + queryString);
 
         if ("OPTIONS".equals(requestMethod)) {
-            sendCorsHeaders();
+            //sendCorsHeaders();
             sendResponse(200, "OK", "");
             return;
         }
@@ -126,18 +126,18 @@ public class FCGI {
         }
     }
 
-    static void sendCorsHeaders() {
-        System.out.print("Access-Control-Allow-Origin: *\r\n");
-        System.out.print("Access-Control-Allow-Methods: POST, GET, OPTIONS\r\n");
-        System.out.print("Access-Control-Allow-Headers: Content-Type, Authorization\r\n");
-        System.out.print("Access-Control-Max-Age: 86400\r\n");
-    }
+//    static void sendCorsHeaders() {
+//        System.out.print("Access-Control-Allow-Origin: *\r\n");
+//        System.out.print("Access-Control-Allow-Methods: POST, GET, OPTIONS\r\n");
+//        System.out.print("Access-Control-Allow-Headers: Content-Type, Authorization\r\n");
+//        System.out.print("Access-Control-Max-Age: 86400\r\n");
+//    }
 
     static void sendResponse(int statusCode, String statusText, String body) {
         try {
             System.out.print("Status: " + statusCode + " " + statusText + "\r\n");
             System.out.print("Content-Type: application/json\r\n");
-            sendCorsHeaders();
+            //sendCorsHeaders();
 
             if (body != null && !body.isEmpty()) {
                 System.out.print("Content-Length: " + body.length() + "\r\n");
@@ -263,7 +263,7 @@ public class FCGI {
         log("Сохранено");
     }
 
-    static void cleanup() {
+    static void clean() {
         try {
             System.out.flush();
 

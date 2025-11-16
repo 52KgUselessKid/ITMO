@@ -1,7 +1,7 @@
 class PointChecker {
     constructor() {
         this.currentX = null;
-        this.SERVER_URL = '/api';
+        this.SERVER_URL = '/fcgi-bin/fcgi.jar';
         this.init();
     }
 
